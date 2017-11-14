@@ -16,11 +16,11 @@ dataSet_X = data[['Sex','Age','Pclass','SibSp','Parch','Fare']].as_matrix()
 data['Deceased'] = data['Survived'].apply(lambda s: 1 - s)
 dataSet_Y = data[['Deceased', 'Survived']].as_matrix()
 
-#定义计算图
+# 定义计算图
 
 # 定义占位符
-x = tf.placeholder(tf.float32, shape=[None, 6])
-y = tf.placeholder(tf.float32, shape=[None, 2])
+x = tf.placeholder(tf.float32, shape=[None, 6]) # None代表可以输入任意条6元数据
+y = tf.placeholder(tf.float32, shape=[None, 2]) # None代表可以输入任意条2元数据
 
 # 使用逻辑回归算法
 
@@ -28,6 +28,7 @@ y = tf.placeholder(tf.float32, shape=[None, 2])
 weights = tf.Variable(tf.random_normal([6, 2]), name="weights")
 # 偏移量
 bias = tf.Variable(tf.zeros([2]), name='bias')
+
 y_pred = tf.nn.softmax(tf.matmul(x,weights) + bias)
 
 # 定义交叉熵
